@@ -4,21 +4,13 @@ pipeline {
     }
     
     stages {
-        stage ('DockerTest') {
-            steps {
-                sh 'ls'
-            }        
-        }
+
         stage ('Build'){
             steps{
-                sh "make clean && make all"
+                sh "gradlew publishToMavenLocal"
             }
         }
-        stage ('Test'){
-            steps{
-                sh "make test"
-            }
-        }
+
         stage ('Results'){
             steps{
                 archiveArtifacts 'out/bin/main'
