@@ -4,6 +4,11 @@ pipeline {
     }
     
     stages {
+        stage ('DockerTest') {
+            steps {
+                sh 'ls'
+            }        
+        }
         stage ('Build'){
             steps{
                 sh "make clean && make all"
