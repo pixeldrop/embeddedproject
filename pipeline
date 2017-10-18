@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Build'){
+            steps{
+                sh "make clean && make all"
+            }
+        }
+        stage ('Test'){
+            steps{
+                sh "make test"
+            }
+        }
+        stage ('Results'){
+            steps{
+                archiveArtifacts 'out/bin/main'
+                archiveArtifacts 'out/bin/results_junit.xml'
+                junit 'out/bin/results_junit.xml'
+            }
+        }
+    }
+}
