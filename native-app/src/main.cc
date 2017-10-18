@@ -6,7 +6,9 @@
 int main(const int argc, const char *argv[])
 {
     printf("Hello world!\n");
-    printf("Version" + VERSION_STRING +  "\n");
+    printf("Version: ");
+    printf(VERSION_STRING);
+    printf("\n");
 
     if (argc > 1) {
       printf("Number of arguments detected is %d.\n", argc);
