@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'pixeldrop/embeddedproject' }
+        docker { image 'praqma/native-gradle' }
     }
     
     stages {
