@@ -20,7 +20,7 @@ EXEC_NAME        = main
 EXEC_FILE       := $(OUTPUT_DIR)/bin/$(EXEC_NAME)
 FLAGS           := -std=c++11 $(WARNINGS)
 CXXFLAGS        := $(FLAGS)
-LDFLAGS         := $(FLAGS) -Wl,-Lbuild/resolvedDep/marius/lib -lmathy 
+LDFLAGS         := $(FLAGS) 
 INC             := -I $(PROJECT_DIR)/inc
 SRC             := $(wildcard $(PROJECT_DIR)/src/*.cc)
 OBJ             := $(SRC:$(PROJECT_DIR)/src/%.cc=$(OUTPUT_DIR)/obj/%.o)
@@ -29,7 +29,7 @@ TEST_EXEC_NAME   = test
 TEST_EXEC_FILE  := $(OUTPUT_DIR)/bin/$(TEST_EXEC_NAME)
 FLAGS_TEST      := $(FLAGS)
 CXXFLAGS_TEST   := $(CXXFLAGS)
-LDFLAGS_TEST    := $(LDFLAGS) -Wl,-Lbuild/resolvedDep/marius/lib -lmathy 
+LDFLAGS_TEST    := $(LDFLAGS)
 INC_TEST        := $(INC) -I $(PROJECT_DIR)/inc
 SRC_TEST        := $(wildcard $(PROJECT_DIR)/tst/*.cc)
 OBJ_TEST        := $(filter-out $(OUTPUT_DIR)/obj/main.o, $(OBJ)) $(SRC_TEST:$(PROJECT_DIR)/tst/%.cc=$(OUTPUT_DIR)/obj/%.o)
@@ -50,7 +50,7 @@ $(EXEC_FILE): $(OBJ)
 	@$(DIR_GUARD)
 	@pwd
 	@echo Linking $(LDFLAGS) $^ 
-	@$(LD) $(LDFLAGS) $^ -o $@ && echo "[OK]: $@"
+	@$(LD) $(LDFLAGS) $^ -Wl,-L build/resolvedDep/marius/lib -lmathy -o $@ && echo "[OK]: $@"
 	@$@
 
 
@@ -63,7 +63,7 @@ test: test_exe
 test_exe: $(TEST_EXEC_FILE)
 $(TEST_EXEC_FILE): $(OBJ_TEST)
 	@$(DIR_GUARD)
-	@$(LD) $(LDFLAGS_TEST) $^ -o $@ && echo "[OK]: $@"
+	@$(LD) $(LDFLAGS_TEST) $^ -Wl,-L build/resolvedDep/marius/lib -lmathy -o $@ && echo "[OK]: $@"
 	@$@
 
 $(OUTPUT_DIR)/obj/%.o: $(PROJECT_DIR)/src/%.cc
