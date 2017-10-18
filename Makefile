@@ -48,7 +48,7 @@ all: main test_exe
 main: $(EXEC_FILE)
 $(EXEC_FILE): $(OBJ)
 	@$(DIR_GUARD)
-	@$(LD) $(LDFLAGS) -Lbuild/resolvedDep/marius/lib -lmathy $^ -o $@ && echo "[OK]: $@"
+	@$(LD) $(LDFLAGS) -Lbuild/resolvedDep/marius/lib/ -lmathy $^ -o $@ && echo "[OK]: $@"
 	@$@
 
 
@@ -61,7 +61,7 @@ test: test_exe
 test_exe: $(TEST_EXEC_FILE)
 $(TEST_EXEC_FILE): $(OBJ_TEST)
 	@$(DIR_GUARD)
-	@$(LD) $(LDFLAGS_TEST) -Lbuild/resolvedDep/marius/lib -lmathy $^ -o $@ && echo "[OK]: $@"
+	@$(LD) $(LDFLAGS_TEST) -Lbuild/resolvedDep/marius/lib/ -lmathy $^ -o $@ && echo "[OK]: $@"
 	@$@
 
 $(OUTPUT_DIR)/obj/%.o: $(PROJECT_DIR)/src/%.cc
