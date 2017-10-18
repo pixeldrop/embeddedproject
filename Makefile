@@ -48,6 +48,8 @@ all: main test_exe
 main: $(EXEC_FILE)
 $(EXEC_FILE): $(OBJ)
 	@$(DIR_GUARD)
+	@pwd
+	@echo Linking $(LDFLAGS) $^ 
 	@$(LD) $(LDFLAGS) $^ -o $@ && echo "[OK]: $@"
 	@$@
 
