@@ -8,13 +8,13 @@ pipeline {
     
     stages {
 
-        stage ('Publish locally'){
-            steps{
-                sh "./gradlew publishToMavenLocal"
-            }
+        stage ('Increment version'){
+                steps {
+                    sh './gradlew incrementVersion'
+                }
         }
 
-        stage ('Publish to artifactory'){
+        stage ('Build and publish'){
             steps{
                 sh "./gradlew publish"
             }
