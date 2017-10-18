@@ -16,10 +16,7 @@ pipeline {
 
         stage ('Build and publish'){
             steps{
-                
-                sh "cat native-app/inc/version.h"
-                sh "./gradlew publish"
-                
+                 sh "./gradlew publish"                
             }
         }
 
